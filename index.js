@@ -8,23 +8,15 @@ let evaluator = {
 }
 
 //debugging
-update("1");
-update("1");
-update("delete");
-update("2");
-update("addition");
-update("3");
-update("delete");
-update("3");
-update("4");
-update("evaluate");
-console.log(evaluator.num1);
-console.log(evaluator.operator);
-console.log(evaluator.num2);
-console.log(evaluator.result);
 
 
-//Input Functions
+//Input function
+let buttons = document.querySelectorAll("button");
+buttons.forEach(button => {
+    button.addEventListener("click", () => {
+        console.log(button.id);
+    })
+})
 
 //Update evaluator object function
 function update(buttonInput){
@@ -65,7 +57,7 @@ function update(buttonInput){
     }
 }
 
-//Evaluate Function
+//Evaluate function
 function evaluate(o){
     let f1 = parseFloat(o.num1);
     let f2 = parseFloat(o.num2);
@@ -74,17 +66,15 @@ if (o.operator === "addition") {
 } else if (o.operator === "subtraction"){
     evaluator.result = subtract(f1, f2);
 } else if (o.operator === "multiplication"){
-    evaluator.result  === multiply(f1, f2);
+    evaluator.result  = multiply(f1, f2);
 } else {
-    evaluator.result === divide(f1, f2);
+    evaluator.result = divide(f1, f2);
 }
 }
 
 
 //Basic math functions
 function add(num1, num2) {
-    console.log(num1);
-    console.log(num2);
 	return num1 + num2;
 };
 
