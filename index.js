@@ -59,25 +59,35 @@ function update(buttonInput){
             evaluator.display = evaluator.num2;
         }
     } else if (buttonInput === "addition") {
-        evaluator.operator = "addition"
+        if(evaluator.num2){
+            console.log("hello");
+            evaluate(evaluator);
+        }
+        evaluator.operator = "addition";
     } else if (buttonInput === "subtraction"){
-        evaluator.operator = "subtraction"
+        if(evaluator.num2){
+            evaluate(evaluator);
+        }
+        evaluator.operator = "subtraction";
     } else if (buttonInput === "multiplication"){
-        evaluator.operator = "multiplication"
+        if(evaluator.num2){
+            evaluate(evaluator);
+        }
+        evaluator.operator = "multiplication";
     } else if (buttonInput === "division") {
-        evaluator.operator = "division"
+        if(evaluator.num2){
+            evaluate(evaluator);
+        }
+        evaluator.operator = "division";
     } else if (buttonInput === "evaluate"){
         evaluate(evaluator);
-        evaluator.display = evaluator.result;
-        evaluator.operator = "";
-        evaluator.num1 = evaluator.result.toString();
-        evaluator.num2 = "";
     }
     updateDisplay(evaluator.display)
 }
 
 //Evaluate function
 function evaluate(o){
+    console.log("evaluate function");
     let f1 = parseFloat(o.num1);
     let f2 = parseFloat(o.num2);
 if (o.operator === "addition") {
@@ -89,6 +99,11 @@ if (o.operator === "addition") {
 } else {
     evaluator.result = divide(f1, f2);
 }
+evaluator.display = evaluator.result;
+evaluator.operator = "";
+evaluator.num1 = evaluator.result.toString();
+evaluator.num2 = "";
+
 }
 
 
