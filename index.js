@@ -1,4 +1,4 @@
-//Initialize display and evaluator variables
+//Initialize evaluator object
 let evaluator = {
     display: "",
     num1: "",
@@ -14,16 +14,28 @@ let evaluator = {
 let buttons = document.querySelectorAll("button");
 buttons.forEach(button => {
     button.addEventListener("click", () => {
-        update;
+        update(button.id);
     })
 })
+
+//Display function
+let display = document.getElementById("display");
+function updateDisplay(text){
+    while (display.firstChild){
+        display.removeChild(display.firstChild);
+    }
+    let textNode = document.createTextNode(text);
+    display.appendChild(textNode);
+}
 
 //Update evaluator object function
 function update(buttonInput){
     if (isNaN(buttonInput) === false && evaluator.operator === ""){
         evaluator.num1 = evaluator.num1.concat(buttonInput);
+        evaluator.display = evaluator.num1;
     } else if (isNaN(buttonInput) === false && evaluator.operator){
         evaluator.num2 = evaluator.num2.concat(buttonInput);
+        evaluator.display = evaluator.num2;
     } else if (buttonInput === "." &&  evaluator.operator === ""){
         if (evaluator.num1.indexOf(".") === -1) {
             evaluator.num1 = evaluator.num1.concat(buttonInput);
@@ -41,8 +53,10 @@ function update(buttonInput){
     } else if (buttonInput === "delete"){
         if (evaluator.operator === ""){
             evaluator.num1 = evaluator.num1.slice(0, -1);
+            evaluator.display = evaluator.num1;
         } else {
             evaluator.num2 = evaluator.num2.slice(0, -1);
+            evaluator.display = evaluator.num2;
         }
     } else if (buttonInput === "addition") {
         evaluator.operator = "addition"
@@ -53,8 +67,13 @@ function update(buttonInput){
     } else if (buttonInput === "division") {
         evaluator.operator = "division"
     } else if (buttonInput === "evaluate"){
-        evaluate(evaluator)
+        evaluate(evaluator);
+        evaluator.display = evaluator.result;
+        evaluator.operator = "";
+        evaluator.num1 = evaluator.result.toString();
+        evaluator.num2 = "";
     }
+    updateDisplay(evaluator.display)
 }
 
 //Evaluate function
