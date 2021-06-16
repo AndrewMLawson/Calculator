@@ -60,7 +60,6 @@ function update(buttonInput){
         }
     } else if (buttonInput === "addition") {
         if(evaluator.num2){
-            console.log("hello");
             evaluate(evaluator);
         }
         evaluator.operator = "addition";
@@ -87,7 +86,6 @@ function update(buttonInput){
 
 //Evaluate function
 function evaluate(o){
-    console.log("evaluate function");
     let f1 = parseFloat(o.num1);
     let f2 = parseFloat(o.num2);
 if (o.operator === "addition") {
@@ -121,6 +119,9 @@ function multiply(num1, num2) {
 };
 
 function divide(num1, num2) {
+    if (num2 === 0){
+        return updateDisplay("DON'T BREAK THE UNIVERSE");
+    }
     return num1 / num2;
 };
 
